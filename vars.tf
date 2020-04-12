@@ -1,16 +1,29 @@
 variable "amis" {
   type = "map"
+  description = "ami for ubuntu image"
   default = {
-    "us-east-1" = "ami-026c8acd92718196b"
-    "us-east-2" = "ami-0d8f6eb4f641ef691"
+    "us-east-1" = "ami-026c8acd92718196b"  }
+}
+
+variable "machine-size" {
+  type = "map"
+  description = "size of instances in aws"
+  default = {
+    regular-size = "t2.micro"
   }
 }
 
-variable "key_name" {
+variable "ingress-ports" {
+  type = list(number)
+  description = "List of ingress ports"
+  default = [22, 8080, 80, 3306]
+
+}
+
+variable "key-name" {
   default = "terraform-aws"
 }
 
-variable "servers" {
-  default = 1
-
+variable "count-servers" {
+  default = 2
 }

@@ -1,40 +1,25 @@
-#Libera acesso para a porta 22 para qualquer usuário que tenha a chave. na região us-east-1
-resource "aws_security_group" "acesso-ssh" {
-  name = "acesso-ssh"
-  description = "acesso-ssh"
+resource "aws_security_group" "enable-ssh-access" {
+ name = "ssh-access"
+ description = "ssh access"
 
-  ingress {
-    from_port = 22
-    protocol = "tcp"
-    to_port = 22
-    #Restringir o ip
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  egress {
-    from_port = 0
-    protocol = "-1"
-    to_port = 0
-    cidr_blocks = ["0.0.0.0/0"]
+ dynamic "ingress" {
+  iterator = ports
+  for_each = var.ingress-ports
+  content {
+   from_port = ports.value
+   protocol = "tcp"
+   to_port = ports.value
+   cidr_blocks = [
+    "0.0.0.0/0"]
   }
  }
-//
-//#Libera acesso para a porta 22 para qualquer usuário que tenha a chave. na região us-east-2
-//resource "aws_security_group" "acesso-ssh-us-east-2" {
-//  provider = "aws.us-east-2"
-//  name = "acesso-ssh-us-east-2"
-//  description = "acesso-ssh"
-//
-//  ingress {
-//    from_port = 22
-//    protocol = "tcp"
-//    to_port = 22
-//    #Restringir o ip
-//    cidr_blocks = ["0.0.0.0/0"]
-//  }
-//  egress {
-//    from_port = 0
-//    protocol = "-1"
-//    to_port = 0
-//    cidr_blocks = ["0.0.0.0/0"]
-//  }
-// }
+ egress {
+  from_port = 0
+  protocol = "-1"
+  to_port = 0
+  cidr_blocks = ["0.0.0.0/0"]
+ }
+ tags = {
+  Name = "Egress"
+ }
+}
