@@ -8,3 +8,7 @@ Projeto iniciado com o intuito de aprender sobre a ferramenta terraform.
 # terraform_model_application
 ![Terraform Workflow](./images/terraform_model.png)
 
+
+# terraform_graph
+![Terraform Workflow](./images/graph.svg)
+
