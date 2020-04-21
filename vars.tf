@@ -22,9 +22,27 @@ variable "ingress-ports" {
 }
 
 variable "key-name" {
-  default = "terraform-aws"
+  description = "key in aws"
+  default     = "terraform-aws"
 }
 
-variable "count-servers" {
-  default = 2
+variable "environment" {
+  type        = string
+  default     = "desv"
+  description = "the enviroment of instance"
+}
+
+variable "plus" {
+  description = "add more instances"
+  default     = 1
+}
+
+variable "production-count-servers" {
+  description = "instances to create in production enviroment"
+  default     = 2
+}
+
+variable "default-count-servers" {
+  description = "instances to create in others enviroments"
+  default     = 1
 }

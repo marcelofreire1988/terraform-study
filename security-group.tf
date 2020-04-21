@@ -1,6 +1,6 @@
 resource "aws_security_group" "enable-ssh-access" {
   name        = "ssh-access"
-  description = "ssh access"
+  description = "enable ssh and other ports to access"
 
   dynamic "ingress" {
     iterator = ports
@@ -22,4 +22,3 @@ resource "aws_security_group" "enable-ssh-access" {
   tags = {
     Name = "Egress"
   }
-}
