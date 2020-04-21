@@ -10,5 +10,3 @@ resource "aws_instance" "web" {
     Name = "study-machine-${count.index}"
   }
 }
-
-

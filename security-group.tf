@@ -22,4 +22,3 @@ resource "aws_security_group" "enable-ssh-access" {
   tags = {
     Name = "Egress"
   }
-}
